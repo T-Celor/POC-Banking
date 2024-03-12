@@ -1,0 +1,377 @@
+{
+	"info": {
+		"_postman_id": "6f409dd4-952a-4697-b466-4dd2e3c4ab72",
+		"name": "POC - Banking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32801744"
+	},
+	"item": [
+		{
+			"name": "Alice - Inscription",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Alice\",\r\n    \"password\": \"Alice\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/auths",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"auths"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alice - Verification",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Alice",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Alice",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/accounts/Alice",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"accounts",
+						"Alice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bob - Inscription",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Bob\",\r\n    \"password\":\"Bob\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/auths",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"auths"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bob - Verification",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Bob",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Bob",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/accounts/Bob",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"accounts",
+						"Bob"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - Verify Account",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/accounts",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alice - Add Metadata Account",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Alice",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Alice",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\":\"Alice\",\r\n    \"lastname\":\"Eisntein\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/accounts/Alice",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"accounts",
+						"Alice"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bob - Add Metadata Account",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "Bob",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "Bob",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstname\":\"Bob\",\r\n    \"lastname\":\"Bobito\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/accounts/Bob",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"accounts",
+						"Bob"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - Verify Account After MetaData",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/accounts",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin - Fund Alice",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"to\":\"Alice\",\r\n    \"amount\": 100.59,\r\n    \"description\":\"Fund user Alice for test.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/transactions/fund",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"transactions",
+						"fund"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alice - Verify Alice After Funding",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DEFAULT_ROUTE}}/transactions",
+					"host": [
+						"{{DEFAULT_ROUTE}}"
+					],
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "DEFAULT_ROUTE",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		}
+	]
+}

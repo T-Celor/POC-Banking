@@ -1,0 +1,75 @@
+version: "3.5"
+
+services:
+  zookeeper:
+    image: quay.io/strimzi/kafka:0.23.0-kafka-2.8.0
+    command:
+      ["sh", "-c", "bin/zookeeper-server-start.sh config/zookeeper.properties"]
+    ports:
+      - "2181:2181"
+    environment:
+      LOG_DIR: /tmp/logs
+    networks:
+      - kafka-quickstart-network
+
+  kafka:
+    image: quay.io/strimzi/kafka:0.23.0-kafka-2.8.0
+    command:
+      [
+        "sh",
+        "-c",
+        "bin/kafka-server-start.sh config/server.properties --override zookeeper.connect=$${KAFKA_ZOOKEEPER_CONNECT}",
+      ]
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      LOG_DIR: "/tmp/logs"
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - kafka-quickstart-network
+
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: poc_bank_db
+      MYSQL_USER: quarkus
+      MYSQL_PASSWORD: quarkus
+    networks:
+      - kafka-quickstart-network
+
+  core:
+    image: quarkus/core:latest
+    depends_on:
+      - kafka
+      - mariadb
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    ports:
+      - "8080:8080"
+    networks:
+      - kafka-quickstart-network
+
+  resolver:
+    image: quarkus/resolver:latest
+    depends_on:
+      - kafka
+      - mariadb
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    networks:
+      - kafka-quickstart-network
+
+volumes:
+  mariadb-data:
+
+networks:
+  kafka-quickstart-network:
+    name: kafkaquickstart
