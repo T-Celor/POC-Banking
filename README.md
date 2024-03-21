@@ -34,10 +34,12 @@ This Quarkus project utilizes Mutiny, Kafka, and MariaDB to create a proof-of-co
 ### Build Project Core
 
 `./mvnw clean package -Pnative --define quarkus.native.container-build=true`
+`docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/core .`
 
 ### Build Project Resolver
 
 `./mvnw clean package -Pnative --define quarkus.native.container-build=true`
+`docker build -f src/main/docker/Dockerfile.native-micro -t quarkus/resolver .`
 
 ## Running the Project
 
