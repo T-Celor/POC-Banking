@@ -1,4 +1,4 @@
-# Project Name ReadMe
+# Quarkus Banking POC
 
 ## Prerequisites
 
@@ -8,6 +8,7 @@ To run this project, you need the following dependencies installed on your machi
 - JDK Java 17
 - Maven
 - Docker
+- Kafka
 
 ## Project Architecture
 
